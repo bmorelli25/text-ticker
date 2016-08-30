@@ -12,7 +12,7 @@ var App = React.createClass({
     return { //state object goes here
       text: 'Your text will appear here',
       textArray: [],
-      displayArray: [],
+      //displayArray: [],
       sizeOfTicker: 80,
       count: 0
     };
@@ -24,28 +24,36 @@ var App = React.createClass({
 
       this.setState({
         count: newCount <= (text.length + sizeOfTicker) ? newCount : 0,
-        displayArray: textArray.slice(count, count+sizeOfTicker),
+        //displayArray: textArray.slice(count, count+sizeOfTicker),
       });
       console.log('ticking', this.state.count);
-    }, 100);
+    }, 1000);
   },
   componentWillUnmount: function () {
     clearInterval(this.count);
     this.count = undefined;
   },
-  handleInputUpdate: function (updatedText, sizeOfTicker, textArray) {
+  handleInputUpdate: function (updatedText, sizeOfTicker, finalArray) {
     clearInterval(this.count);
     this.count = undefined;
+    console.log('handleInputUpdate', finalArray);
+    //var newArray = finalArray.slice(0);
+
     this.setState({
       text: updatedText,
-      sizeOfTicker: sizeOfTicker,
-      textArray,
-      count: 0
+      count: 0,
+      textArray: finalArray
+      // ERRORS OCCUR ADDING SIZE TO STATE
+      //sizeOfTicker: sizeOfTicker,
+    }, function () {
+      console.log('state final array',this.state.textArray);
     });
+    this.forceUpdate();
     this.startCount();
   },
   render() {
     var {text, count, sizeOfTicker, textArray, displayArray} = this.state;
+    console.log('textarray', textArray);
 
     return (
       <div className="App">

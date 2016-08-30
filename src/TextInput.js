@@ -8,7 +8,7 @@ var TextInput = React.createClass({
     var sizeOfTicker = this.refs.sizeOfTicker.value;
 
     if(updatedText.length > 0 && sizeOfTicker > 0) {
-      //this.updateTickerArray(updatedText, sizeOfTicker);
+      this.updateTickerArray(updatedText, sizeOfTicker);
       this.props.onInputUpdate(updatedText, sizeOfTicker);
     } else {
       this.refs.tickerText.focus();
@@ -16,16 +16,18 @@ var TextInput = React.createClass({
   },
   updateTickerArray: function (updatedText, sizeOfTicker) {
     var whiteSpace = '\u00a0';
-    var startingArray = []
+    var startingArray = [];
     for (var i = 0; i < sizeOfTicker; i++){
       startingArray[i] = whiteSpace;
     };
 
     var messageArray = updatedText.split('');
     var finalArray = startingArray.concat(messageArray, startingArray);
+    var newArray = finalArray.slice(0);
 
     this.refs.tickerText.value = '';
-    this.props.onInputUpdate(updatedText, sizeOfTicker, finalArray);
+    this.props.onInputUpdate(updatedText, sizeOfTicker, newArray);
+    console.log('finalArray', newArray);
   },
   render: function () {
     return(

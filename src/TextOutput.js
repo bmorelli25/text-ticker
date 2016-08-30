@@ -14,16 +14,19 @@ var TextOutput = React.createClass({
     var finalArray = startingArray.concat(messageArray, startingArray);
     var tickerArray = finalArray.slice(count, count+sizeOfTicker);
 
+    // var {textArray, count, sizeOfTicker} = this.props;
+    // var tickerArray = textArray.slice(count, count+sizeOfTicker);
+
     return (
       tickerArray.join('')
     );
   },
-  // componentWillUpdate: function (newProps, newState) {
-  //
-  // },
+  componentWillUpdate: function (newProps, newState) {
+
+  },
   render: function () {
 
-
+    console.log('textArray', this.props.textArray);
 
     return (
       <div>
