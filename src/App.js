@@ -27,7 +27,7 @@ var App = React.createClass({
         //displayArray: textArray.slice(count, count+sizeOfTicker),
       });
       console.log('ticking', this.state.count);
-    }, 100);
+    }, 1000);
   },
   componentWillUnmount: function () {
     clearInterval(this.count);
@@ -36,15 +36,15 @@ var App = React.createClass({
   handleInputUpdate: function (updatedText, sizeOfTicker, finalArray) {
     clearInterval(this.count);
     this.count = undefined;
-    console.log('handleInputUpdate', finalArray);
+    console.log('size1', sizeOfTicker);
     //var newArray = finalArray.slice(0);
 
     this.setState({
       text: updatedText,
       count: 0,
-      textArray: finalArray
+      textArray: finalArray,
       // ERRORS OCCUR ADDING SIZE TO STATE
-      //sizeOfTicker: sizeOfTicker,
+      //sizeOfTicker: sizeOfTicker
     }, function () {
       console.log('state final array',this.state.textArray);
     });
