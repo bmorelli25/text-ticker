@@ -9,7 +9,6 @@ var TextInput = React.createClass({
 
     if(updatedText.length > 0 && sizeOfTicker > 0) {
       this.updateTickerArray(updatedText, sizeOfTicker);
-      this.props.onInputUpdate(updatedText, sizeOfTicker);
     } else {
       this.refs.tickerText.focus();
     }

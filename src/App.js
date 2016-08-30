@@ -27,7 +27,7 @@ var App = React.createClass({
         //displayArray: textArray.slice(count, count+sizeOfTicker),
       });
       console.log('ticking', this.state.count);
-    }, 1000);
+    }, 100);
   },
   componentWillUnmount: function () {
     clearInterval(this.count);
