@@ -11,6 +11,8 @@ var App = React.createClass({
   getInitialState: function () {
     return { //state object goes here
       text: 'Your text will appear here',
+      textArray: [],
+      displayArray: [],
       sizeOfTicker: 80,
       count: 0
     };
@@ -18,24 +20,32 @@ var App = React.createClass({
   startCount: function () {
     this.count = setInterval(() => {
       var newCount = this.state.count + 1;
+      var {text, textArray, count, sizeOfTicker} = this.state;
+
       this.setState({
-        count: newCount <= (this.state.text.length + 79) ? newCount : 0
+        count: newCount <= (text.length + sizeOfTicker) ? newCount : 0,
+        displayArray: textArray.slice(count, count+sizeOfTicker),
       });
       console.log('ticking', this.state.count);
     }, 100);
   },
   componentWillUnmount: function () {
-    clearInterval(this.timer);
-    this.timer = undefined;
+    clearInterval(this.count);
+    this.count = undefined;
   },
-  handleTextUpdate: function (updatedText, sizeOfTicker) {
+  handleInputUpdate: function (updatedText, sizeOfTicker, textArray) {
+    clearInterval(this.count);
+    this.count = undefined;
     this.setState({
       text: updatedText,
-      sizeOfTicker: sizeOfTicker
+      sizeOfTicker: sizeOfTicker,
+      textArray,
+      count: 0
     });
+    this.startCount();
   },
   render() {
-    var {text, count, sizeOfTicker} = this.state;
+    var {text, count, sizeOfTicker, textArray, displayArray} = this.state;
 
     return (
       <div className="App">
@@ -46,8 +56,8 @@ var App = React.createClass({
         <p className="App-intro">
           Paragraph explaining things.
         </p>
-        <TextInput onTextUpdate={this.handleTextUpdate}/>
-        <TextOutput text={text} count={count} sizeOfTicker={sizeOfTicker}/>
+        <TextInput onInputUpdate={this.handleInputUpdate}/>
+        <TextOutput text={text} count={count} sizeOfTicker={sizeOfTicker} textArray={textArray} displayArray={displayArray}/>
       </div>
     );
   }

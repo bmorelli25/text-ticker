@@ -18,13 +18,18 @@ var TextOutput = React.createClass({
       tickerArray.join('')
     );
   },
+  // componentWillUpdate: function (newProps, newState) {
+  //
+  // },
   render: function () {
+
 
 
     return (
       <div>
         <p>
-          <b>{this.renderTicker()}</b>
+
+          <b>||{this.renderTicker()}||</b>
         </p>
       </div>
     );

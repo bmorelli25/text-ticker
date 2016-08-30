@@ -7,12 +7,25 @@ var TextInput = React.createClass({
     var updatedText = this.refs.tickerText.value;
     var sizeOfTicker = this.refs.sizeOfTicker.value;
 
-    if(updatedText.length > 0) {
-      this.refs.tickerText.value = '';
-      this.props.onTextUpdate(updatedText, sizeOfTicker);
+    if(updatedText.length > 0 && sizeOfTicker > 0) {
+      //this.updateTickerArray(updatedText, sizeOfTicker);
+      this.props.onInputUpdate(updatedText, sizeOfTicker);
     } else {
       this.refs.tickerText.focus();
     }
+  },
+  updateTickerArray: function (updatedText, sizeOfTicker) {
+    var whiteSpace = '\u00a0';
+    var startingArray = []
+    for (var i = 0; i < sizeOfTicker; i++){
+      startingArray[i] = whiteSpace;
+    };
+
+    var messageArray = updatedText.split('');
+    var finalArray = startingArray.concat(messageArray, startingArray);
+
+    this.refs.tickerText.value = '';
+    this.props.onInputUpdate(updatedText, sizeOfTicker, finalArray);
   },
   render: function () {
     return(
