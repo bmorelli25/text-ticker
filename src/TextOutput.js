@@ -3,29 +3,29 @@ import './App.css';
 
 var TextOutput = React.createClass({
   renderTicker: function () {
+    var sizeOfTicker = 80;
+    var {text, count} = this.props;
     var whiteSpace = '\u00a0';
     var startingArray = []
-    for (var i = 0; i < 80; i++){
+    for (var i = 0; i < sizeOfTicker; i++){
       startingArray[i] = whiteSpace;
     };
 
-    var message = this.props.text;
-    var messageArray = message.split('');
-    var finalArray = startingArray.concat(messageArray);
-
-    //console.log('finalArray: ', finalArray)
-
+    var messageArray = text.split('');
+    var finalArray = startingArray.concat(messageArray, startingArray);
+    var tickerArray = finalArray.slice(count, count+sizeOfTicker);
+    
     return (
-      finalArray.join('')
+      tickerArray.join('')
     );
   },
   render: function () {
 
-    var {text, count} = this.props;
+
     return (
       <div>
         <p>
-          <b>||{this.renderTicker()}||</b>
+          <b>{this.renderTicker()}</b>
         </p>
       </div>
     );

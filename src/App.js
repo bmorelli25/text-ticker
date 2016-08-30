@@ -18,10 +18,10 @@ var App = React.createClass({
     this.count = setInterval(() => {
       var newCount = this.state.count + 1;
       this.setState({
-        count: newCount <= this.state.text.length ? newCount : 0
+        count: newCount <= (this.state.text.length + 79) ? newCount : 0
       });
       console.log('ticking', this.state.count);
-    }, 250);
+    }, 100);
   },
   componentWillUnmount: function () {
     clearInterval(this.timer);
