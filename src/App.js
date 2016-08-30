@@ -11,6 +11,7 @@ var App = React.createClass({
   getInitialState: function () {
     return { //state object goes here
       text: 'Your text will appear here',
+      sizeOfTicker: 80,
       count: 0
     };
   },
@@ -27,13 +28,14 @@ var App = React.createClass({
     clearInterval(this.timer);
     this.timer = undefined;
   },
-  handleTextUpdate: function (text) {
+  handleTextUpdate: function (updatedText, sizeOfTicker) {
     this.setState({
-      text: text
+      text: updatedText,
+      sizeOfTicker: sizeOfTicker
     });
   },
   render() {
-    var {text, count} = this.state;
+    var {text, count, sizeOfTicker} = this.state;
 
     return (
       <div className="App">
@@ -45,7 +47,7 @@ var App = React.createClass({
           Paragraph explaining things.
         </p>
         <TextInput onTextUpdate={this.handleTextUpdate}/>
-        <TextOutput text={text} count={count}/>
+        <TextOutput text={text} count={count} sizeOfTicker={sizeOfTicker}/>
       </div>
     );
   }

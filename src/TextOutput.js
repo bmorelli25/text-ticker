@@ -3,8 +3,7 @@ import './App.css';
 
 var TextOutput = React.createClass({
   renderTicker: function () {
-    var sizeOfTicker = 80;
-    var {text, count} = this.props;
+    var {text, count, sizeOfTicker} = this.props;
     var whiteSpace = '\u00a0';
     var startingArray = []
     for (var i = 0; i < sizeOfTicker; i++){
@@ -14,7 +13,7 @@ var TextOutput = React.createClass({
     var messageArray = text.split('');
     var finalArray = startingArray.concat(messageArray, startingArray);
     var tickerArray = finalArray.slice(count, count+sizeOfTicker);
-    
+
     return (
       tickerArray.join('')
     );
