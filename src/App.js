@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import TextInput from './TextInput';
 import TextOutput from './TextOutput';
+import initialArray from './initialTextArray';
 
 var App = React.createClass({
   componentDidMount: function () {
@@ -11,8 +12,7 @@ var App = React.createClass({
   getInitialState: function () {
     return { //state object goes here
       text: 'Your text will appear here',
-      textArray: [],
-      //displayArray: [],
+      textArray: initialArray,
       sizeOfTicker: 80,
       count: 0
     };
@@ -24,7 +24,6 @@ var App = React.createClass({
 
       this.setState({
         count: newCount <= (text.length + sizeOfTicker) ? newCount : 0,
-        //displayArray: textArray.slice(count, count+sizeOfTicker),
       });
       console.log('ticking', this.state.count);
     }, 1000);
@@ -33,22 +32,17 @@ var App = React.createClass({
     clearInterval(this.count);
     this.count = undefined;
   },
-  handleInputUpdate: function (updatedText, sizeOfTicker, finalArray) {
+  handleInputUpdate: function (updatedText, finalArray) {
     clearInterval(this.count);
     this.count = undefined;
-    console.log('size1', sizeOfTicker);
-    //var newArray = finalArray.slice(0);
 
     this.setState({
       text: updatedText,
       count: 0,
-      textArray: finalArray,
-      // ERRORS OCCUR ADDING SIZE TO STATE
-      //sizeOfTicker: sizeOfTicker
+      textArray: finalArray
     }, function () {
       console.log('state final array',this.state.textArray);
     });
-    this.forceUpdate();
     this.startCount();
   },
   render() {
@@ -64,7 +58,7 @@ var App = React.createClass({
         <p className="App-intro">
           Paragraph explaining things.
         </p>
-        <TextInput onInputUpdate={this.handleInputUpdate}/>
+        <TextInput onInputUpdate={this.handleInputUpdate} sizeOfTicker={sizeOfTicker}/>
         <TextOutput text={text} count={count} sizeOfTicker={sizeOfTicker} textArray={textArray} displayArray={displayArray}/>
       </div>
     );

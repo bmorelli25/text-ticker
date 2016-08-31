@@ -5,9 +5,10 @@ var TextInput = React.createClass({
   handleText: function (e) {
     e.preventDefault();
     var updatedText = this.refs.tickerText.value;
-    var sizeOfTicker = this.refs.sizeOfTicker.value;
+    var {sizeOfTicker} = this.props;
+    //var sizeOfTicker = this.refs.sizeOfTicker.value;
 
-    if(updatedText.length > 0 && sizeOfTicker > 0) {
+    if(updatedText.length > 0) {
       this.updateTickerArray(updatedText, sizeOfTicker);
     } else {
       this.refs.tickerText.focus();
@@ -25,7 +26,7 @@ var TextInput = React.createClass({
     var newArray = finalArray.slice(0);
 
     this.refs.tickerText.value = '';
-    this.props.onInputUpdate(updatedText, sizeOfTicker, newArray);
+    this.props.onInputUpdate(updatedText, newArray);
     console.log('finalArray', newArray);
   },
   render: function () {
@@ -33,7 +34,6 @@ var TextInput = React.createClass({
       <div>
         <form ref="form" onSubmit={this.handleText}>
           <input type="text" ref="tickerText" placeholder="Enter your text here"/>
-          <input type="number" ref="sizeOfTicker" placeholder="Size of Ticker (in chars)" defaultValue="80"/>
           <button>Start</button>
         </form>
       </div>

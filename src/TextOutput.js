@@ -16,7 +16,6 @@ var TextOutput = React.createClass({
     return (
       <div>
         <p>
-
           <b>||{this.renderTicker()}||</b>
         </p>
       </div>
