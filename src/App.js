@@ -25,7 +25,7 @@ var App = React.createClass({
       this.setState({
         count: newCount <= (text.length + sizeOfTicker) ? newCount : 0,
       });
-      console.log('ticking', this.state.count);
+      //console.log('ticking', this.state.count);
     }, 100);
   },
   componentWillUnmount: function () {
@@ -41,22 +41,25 @@ var App = React.createClass({
       count: 0,
       textArray: finalArray
     }, function () {
-      console.log('state final array',this.state.textArray);
+      //console.log('state final array',this.state.textArray);
     });
     this.startCount();
   },
   render() {
     var {text, count, sizeOfTicker, textArray, displayArray} = this.state;
-    console.log('textarray', textArray);
+    //console.log('textarray', textArray);
 
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>text-ticker</h2>
+          <h2>react-text-ticker</h2>
         </div>
         <p className="App-intro">
-          Paragraph explaining things.
+          This is a simple little React app I built to play around with React.
+          I wanted to create a simple app that used setInterval to continuously change
+          the DOM so I could easily relate what was happening on the backend, to what I
+          was seeing on the frontend. I hope you enjoy!
         </p>
         <TextInput onInputUpdate={this.handleInputUpdate} sizeOfTicker={sizeOfTicker}/>
         <TextOutput text={text} count={count} sizeOfTicker={sizeOfTicker} textArray={textArray} displayArray={displayArray}/>

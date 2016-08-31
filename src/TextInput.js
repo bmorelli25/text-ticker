@@ -27,7 +27,7 @@ var TextInput = React.createClass({
 
     this.refs.tickerText.value = '';
     this.props.onInputUpdate(updatedText, newArray);
-    console.log('finalArray', newArray);
+    //console.log('finalArray', newArray);
   },
   render: function () {
     return(
