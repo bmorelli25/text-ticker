@@ -26,7 +26,7 @@ var App = React.createClass({
         count: newCount <= (text.length + sizeOfTicker) ? newCount : 0,
       });
       console.log('ticking', this.state.count);
-    }, 1000);
+    }, 100);
   },
   componentWillUnmount: function () {
     clearInterval(this.count);
